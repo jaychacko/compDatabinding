@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnChanges } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -6,9 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  serverElements = [{type:'server',name:'testserver',content:'just a test'}];
- 
-  onServerAdded(serverData:{serverName:string,serverContent:string}) {
+  serverElements = [{ type: 'server', name: 'testserver', content: 'just a test' }];
+
+  onServerAdded(serverData: { serverName: string, serverContent: string }) {
     this.serverElements.push({
       type: 'server',
       name: serverData.serverName,
@@ -16,12 +16,18 @@ export class AppComponent {
     });
   }
 
-  onBlueprintAdded(bluePrintData:{serverName:string,serverContent:string}) {
+  onBlueprintAdded(bluePrintData: { serverName: string, serverContent: string }) {
     this.serverElements.push({
       type: 'blueprint',
       name: bluePrintData.serverName,
       content: bluePrintData.serverContent
     });
+  }
+  onChangeFirst() {
+    this.serverElements[0].name = 'changed';
+  }
+  onDestroyFirst() {
+    this.serverElements.splice(0, 1);
   }
 
 
